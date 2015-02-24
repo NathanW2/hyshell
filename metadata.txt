@@ -6,3 +6,7 @@ qgisMinimumVersion=2.6
 author=Nathan Woodrow
 email=madmanwoo@gmail.com
 icon=icon.png
+homepage=https://github.com/NathanW2/hyshell
+tracker=https://github.com/NathanW2/hyshell
+repository=https://github.com/NathanW2/hyshell
+
