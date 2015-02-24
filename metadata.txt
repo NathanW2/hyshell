@@ -5,3 +5,4 @@ version=1.0
 qgisMinimumVersion=2.6
 author=Nathan Woodrow
 email=madmanwoo@gmail.com
+icon=icon.png
