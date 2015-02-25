@@ -8,29 +8,38 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #---------------------------------------------------------------------
-
 import console
 import console.console
+import os
 import ast
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
+def resolve(name, basepath=None):
+    if not basepath:
+      basepath = os.path.dirname(os.path.realpath(__file__))
+    return os.path.join(basepath, name)
+
+
 def classFactory(iface):
     return HyShell(iface)
+
 
 def displayPrompt(self, more=False):
     self.append("... ") if more else self.append(u"\u03BB=> ")
     self.move_cursor_to_end()
+
 
 class HyShell:
     def __init__(self, iface):
         self.iface = iface
         self._oldrun = None
         self._olddisplay = None
+        self.added = False
 
     def initGui(self):
-        self.action = QAction("Hy!", self.iface.mainWindow())
+        self.action = QAction(QIcon(resolve("icon.png")), "Hy!", self.iface.mainWindow())
         self.action.setCheckable(True)
         self.action.toggled.connect(self.hymode)
         self.iface.addToolBarIcon(self.action)
@@ -41,6 +50,13 @@ class HyShell:
 
     def hymode(self, checked):
         if checked:
+            if not console.console._console or not console.console._console.isVisible():
+                console.console.show_console()
+
+            if console.console._console and not self.added:
+                console.console._console.console.toolBar.addAction(self.action)
+                self.added = True
+
             from hy.cmdline import HyREPL
 
             if not self._oldrun and not self._olddisplay:
