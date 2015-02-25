@@ -1,11 +1,12 @@
 [general]
 name=HyShell
 description=Convert the Python console into a Hy Shell.  Hy is a LISP build on Python AST.
-version=1.1
+version=1.2
 qgisMinimumVersion=2.6
 author=Nathan Woodrow
 email=madmanwoo@gmail.com
 icon=icon.png
+
 homepage=https://github.com/NathanW2/hyshell
 tracker=https://github.com/NathanW2/hyshell
 repository=https://github.com/NathanW2/hyshell
